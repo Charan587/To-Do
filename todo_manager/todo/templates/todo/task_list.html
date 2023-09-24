@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome To-Do List</title>
+    <style>
+        body, h1, ul {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* Center content vertically and horizontally */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f1f1f1;
+        }
+
+        /* Title styling */
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* List styling */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        strong {
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+            margin-right: 10px;
+        }
+        span.completed {
+            color: green;
+            font-weight: bold;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        a.add-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        a.add-link {
+            display: inline-block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        a.add-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Awesome To-Do List</h1>
+
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <strong>{{ task.name }}</strong>: {{ task.description }}
+                {% if task.completed %}
+                    <span class="completed">(Completed)</span>
+                {% endif %}
+                <a href="{% url 'mark_completed' task.id %}">Mark Completed</a>
+                <a href="{% url 'delete_task' task.id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a class="add-link" href="{% url 'add_task' %}">Add a New Task</a>
+</body>
+</html>

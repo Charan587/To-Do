@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a New Task</title>
+    <style>
+        body, h1, ul {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* Center content vertically and horizontally */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f1f1f1;
+        }
+
+        /* Title styling */
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* List styling */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        label {
+            color: #333;
+            text-align: left;
+            margin-bottom: 5px;
+            font-weight: bold;
+            display: block;
+        }
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 0;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add a New Task</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="name">Task Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required>
+        <br>
+        <label for="due_date">Due Date:</label>
+        <input type="date" id="due_date" name="due_date" required>
+        <br>
+        <input type="submit" value="Add Task">
+    </form>
+
+    <a href="{% url 'task_list' %}">Back to Task List</a>
+</body>
+</html>
